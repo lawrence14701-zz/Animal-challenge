@@ -1,18 +1,42 @@
 {
     "africa": {
-        "air": [{ "name": "Hornbill", "points": 0 }, { "name": "Kingfisher", "points": 0 }],
-        "land": [{ "name": "Lion", "points": 0 }, { "name": "Gazelle", "points": 0 }]
+        "air": [
+            { "name": "Hornbill", "points": 0 },
+            { "name": "Kingfisher", "points": 0 }
+        ],
+        "land": [
+            { "name": "Lion", "points": 0 },
+            { "name": "Gazelle", "points": 0 }
+        ]
     },
     "europe": {
-        "air": [{ "name": "Warbler", "points": 0 }, { "name": "Patridge", "points": 0 }],
-        "land": [{ "name": "Deer", "points": 0 }, { "name": "Lemming", "points": 0 }]
+        "air": [
+            { "name": "Warbler", "points": 0 },
+            { "name": "Patridge", "points": 0 }
+        ],
+        "land": [
+            { "name": "Deer", "points": 0 },
+            { "name": "Lemming", "points": 0 }
+        ]
     },
     "america": {
-        "air": [{ "name": "Eagle", "points": 0 }, { "name": "Dove", "points": 0 }],
-        "land": [{ "name": "Bison", "points": 0 }, { "name": "Turkey", "points": 0 }]
+        "air": [
+            { "name": "Eagle", "points": 0 },
+            { "name": "Dove", "points": 0 }
+        ],
+        "land": [
+            { "name": "Bison", "points": 0 },
+            { "name": "Turkey", "points": 0 }
+        ]
     },
     "australia": {
-        "air": [{ "name": "Emu", "points": 0 }, { "name": "Finch", "points": 0 }],
-        "land": [{ "name": "Spider", "points": 0 }, { "name": "Kangaroo", "points": 0 }]
+        "air": [
+            { "name": "Emu", "points": 0 },
+            { "name": "Finch", "points": 0 }
+        ],
+        "land": [
+            { "name": "Spider", "points": 0 },
+            { "name": "Kangaroo", "points": 0 }
+        ]
     }
 }
