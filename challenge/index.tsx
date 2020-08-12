@@ -56,9 +56,12 @@ const App = () => {
 
         const favArea = localStorage.getItem('favArea') || '';
         setfavouriteArea(favArea);
+
+        setVotes(parseInt(localStorage.getItem('votes') || '{}') || 0);
     }, []);
 
     const handleVotes = () => {
+        localStorage.setItem('votes', `${votes + 1}`);
         setVotes(votes + 1);
     };
 
