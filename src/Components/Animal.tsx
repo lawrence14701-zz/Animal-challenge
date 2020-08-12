@@ -1,4 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 345,
+        margin: '5px',
+    },
+});
 
 export interface AnimalDescriptor {
     name: string;
@@ -24,6 +37,7 @@ export const Animal: React.FC<AnimalProps> = ({
     handleVotes,
     handleData,
 }) => {
+    const classes = useStyles();
     const [points, setPoints] = useState(animal.points);
     const onUpVote = () => {
         localStorage.setItem(`${animal.name}`, `${points + 1}`);
@@ -54,12 +68,24 @@ export const Animal: React.FC<AnimalProps> = ({
         setPoints(parseInt(data || '{}') || 0);
     });
     return (
-        <div>
-            <h4>{animal.name}</h4>
-            <button onClick={onUpVote}>Upvote</button>
-            <button onClick={onDownVote}>Downvote</button>
-            <h4>{`${points} Points`}</h4>
-            <hr />
-        </div>
+        <Card className={classes.root}>
+            <CardContent>
+                <Typography variant="h4">{animal.name}</Typography>
+                <Typography variant="h5">{`${points} Points`}</Typography>
+            </CardContent>
+
+            <CardActions>
+                <Button color="primary" variant="contained" onClick={onUpVote}>
+                    Upvote
+                </Button>
+                <Button
+                    color="secondary"
+                    variant="contained"
+                    onClick={onDownVote}
+                >
+                    Downvote
+                </Button>
+            </CardActions>
+        </Card>
     );
 };
