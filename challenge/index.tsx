@@ -1,11 +1,36 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
+import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import animalData from './animals.json';
 import { Continent } from '../.';
+import Typography from '@material-ui/core/Typography';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Container from '@material-ui/core/Container';
+import PetsTwoToneIcon from '@material-ui/icons/PetsTwoTone';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles({
+    root: {
+        minWidth: 275,
+        padding: '30px',
+    },
+    button: {
+        marginRight: '10px',
+    },
+    icon: {
+        minWidth: 275,
+        minHeight: 275,
+        marginLeft: '4rem',
+    },
+});
 
 const App = () => {
+    const classes = useStyles();
+
     const [votes, setVotes] = React.useState(0);
     const [myData, setData] = React.useState({
         continents: [],
@@ -119,28 +144,66 @@ const App = () => {
     };
 
     return (
-        <div>
-            <div style={{ display: 'flex' }}>
-                {Object.entries(animalData).map(([continent, areas]) => (
-                    <Continent
-                        key={continent}
-                        continent={continent}
-                        areas={areas}
-                        handleVotes={handleVotes}
-                        handleData={handleData}
-                    />
-                ))}
+        <Container>
+            <div className={classes.root}>
+                <div style={{ marginLeft: 'auto' }}>
+                    {Object.entries(animalData).map(([continent, areas]) => (
+                        <div>
+                            <Continent
+                                key={continent}
+                                continent={continent}
+                                areas={areas}
+                                handleVotes={handleVotes}
+                                handleData={handleData}
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div style={{ marginLeft: 'auto' }}>
+                    <Grid container direction="row" alignItems="center">
+                        <Grid item>
+                            <Card className={classes.root}>
+                                <CardContent>
+                                    <Typography variant="h3">
+                                        Total Votes: {votes}
+                                    </Typography>
+                                    <Typography variant="h3">
+                                        Favourite Continent(s):{' '}
+                                        {favouriteContinent}
+                                    </Typography>
+                                    <Typography variant="h3">
+                                        Favourite Area(s) {favouriteArea}
+                                    </Typography>
+                                    <Typography variant="h3">
+                                        Favourite Animal(s): {favouriteAnimals}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button
+                                        className={classes.button}
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={onDownload}
+                                    >
+                                        Download Statistics
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        onClick={onReset}
+                                    >
+                                        Reset Statistics
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                        <Grid item className={classes.icon}>
+                            <PetsTwoToneIcon className={classes.icon} />
+                        </Grid>
+                    </Grid>
+                </div>
             </div>
-            <hr />
-            <div style={{ marginLeft: '3rem' }}>
-                <h2>Total Votes: {votes}</h2>
-                <h2>Favourite Continent(s): {favouriteContinent}</h2>
-                <h2>Favourite Area(s) {favouriteArea}</h2>
-                <h2>Favourite Animal(s): {favouriteAnimals}</h2>
-                <button onClick={onDownload}>Download Statistics</button>
-                <button onClick={onReset}>Reset Statistics</button>
-            </div>
-        </div>
+        </Container>
     );
 };
 

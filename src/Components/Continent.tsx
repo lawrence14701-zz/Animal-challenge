@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Area } from './Area';
 import { AnimalDescriptor } from './Animal';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Accordion from '@material-ui/core/Accordion';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles({
+    root: {
+        width: 'auto',
+    },
+});
 
 interface ContinentProps {
     continent: string;
@@ -15,6 +28,7 @@ export const Continent: React.FC<ContinentProps> = ({
     handleVotes,
     handleData,
 }) => {
+    const classes = useStyles();
     const [points, setPoints] = useState(0);
     const increaseContinentPoints = () => {
         localStorage.setItem(`${continent}`, `${points + 1}`);
@@ -40,20 +54,35 @@ export const Continent: React.FC<ContinentProps> = ({
     });
 
     return (
-        <div style={{ marginLeft: '3rem' }}>
-            <h1>{`${continent} (${points})`}</h1>
-            {Object.entries(areas).map(([area, animals]) => (
-                <Area
-                    key={area}
-                    area={area}
-                    animals={animals}
-                    increaseContinentPoints={increaseContinentPoints}
-                    decreaseContinentPoints={decreaseContinentPoints}
-                    handleVotes={handleVotes}
-                    continent={continent}
-                    handleData={handleData}
-                />
-            ))}
-        </div>
+        <Accordion className={classes.root}>
+            <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+            >
+                <Typography variant="h4">{`${continent} (${points})`}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <Grid container direction="column">
+                    {Object.entries(areas).map(([area, animals]) => (
+                        <Grid item>
+                            <Area
+                                key={area}
+                                area={area}
+                                animals={animals}
+                                increaseContinentPoints={
+                                    increaseContinentPoints
+                                }
+                                decreaseContinentPoints={
+                                    decreaseContinentPoints
+                                }
+                                handleVotes={handleVotes}
+                                handleData={handleData}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
+            </AccordionDetails>
+        </Accordion>
     );
 };
