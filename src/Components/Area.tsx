@@ -55,7 +55,7 @@ export const Area: React.FC<AreaProps> = ({
     useEffect(() => {
         const data = localStorage.getItem(`${area}`);
         setPoints(parseInt(data || '{}') || 0);
-    });
+    }, []);
 
     return (
         <div>

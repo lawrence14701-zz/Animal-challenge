@@ -66,7 +66,7 @@ export const Animal: React.FC<AnimalProps> = ({
     useEffect(() => {
         const data = localStorage.getItem(`${animal.name}`);
         setPoints(parseInt(data || '{}') || 0);
-    });
+    }, []);
     return (
         <Card className={classes.root}>
             <CardContent>
