@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Animal, AnimalDescriptor } from './Animal';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
     root: {
-        ...theme.typography.button,
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(1),
+        padding: '1rem',
+        backgroundColor: '#ffe0b2',
+        width: 'auto',
     },
-}));
+    card: {
+        margin: '5px',
+    },
+});
 
 interface AreaProps {
     area: string;
@@ -55,10 +59,12 @@ export const Area: React.FC<AreaProps> = ({
 
     return (
         <div>
-            <Typography
-                className={classes.root}
-                variant="h2"
-            >{`${area} (${points})`}</Typography>
+            <Card className={classes.card}>
+                <Typography
+                    className={classes.root}
+                    variant="h4"
+                >{`${area} (${points})`}</Typography>
+            </Card>
             {animals.map(animal => (
                 <Animal
                     key={animal.name}
