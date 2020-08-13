@@ -79,14 +79,15 @@ const App = () => {
         let favContinent;
         let favArea;
         localStorage.setItem('data', JSON.stringify(myData));
+        console.log(myData);
         myData.continents.forEach((continent: any) => {
-            if (continent.points > max) {
+            if (parseInt(continent.points) > max) {
                 max = continent.points;
                 favContinent = continent.name;
             }
         });
-        max = 0;
         setfavouriteContinent(favContinent);
+        max = 0;
         localStorage.setItem('favContinent', favContinent);
         myData.areas.forEach((area: any) => {
             if (area.points > max) {
